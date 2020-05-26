@@ -10,6 +10,28 @@ body {
 	background-color: white;
 }
 
+body * {
+	box-sizing: border-box;
+}
+
+h1,h2,h3,h4 {
+	text-transform: uppercase;
+}
+
+a {
+	text-decoration: none;
+	color: tomato;
+}
+
+a:hover, a:focus {
+	text-decoration: underline;
+	color: tomato;
+}
+
+.txt-center {
+	text-align: center;
+}
+
 section#main {
 	width: 100%;
 	height: auto;
@@ -23,4 +45,50 @@ section#main >.inner {
 	margin: 0 auto;
 	padding: 40px;
 	background-color: #f9f9f9;
+}
+
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	background-color: black;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 3px;
+	transition: all 200ms ease-in-out;
+}
+
+.btn:hover, .btn:focus {
+	background-color: #333;
+	color: white;
+	text-decoration: none;
+}
+
+figure {
+	border: white solid 10px;
+	box-shadow: 0 0 15px #0000006b;
+}
+
+code {
+	display: block;
+	background-color: #333;
+	border-radius: 3px;
+	border: white dashed 2px;
+	color: #ddd;
+	padding: 10px;
+	margin: 20px 0;
+}
+
+footer {
+	width: 100%;
+	background-color: black;
+	padding: 20px 40px;
+}
+
+footer p {
+	color: white;
+	font-size: 10pt;
+}
+
+footer p span {
+	color: tomato;
 }
