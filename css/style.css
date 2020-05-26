@@ -1,0 +1,26 @@
+html,
+body {
+    margin: 0;
+    position: relative;
+}
+
+body {
+    font-size: 12pt;
+	font-family: Helvetica, sans-serif;
+	background-color: white;
+}
+
+section#main {
+	width: 100%;
+	height: auto;
+	position: relative;
+	margin: 40px 0;
+}
+
+section#main >.inner {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 40px;
+	background-color: #f9f9f9;
+}

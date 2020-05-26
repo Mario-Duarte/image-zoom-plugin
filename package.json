@@ -1,0 +1,43 @@
+{
+  "name": "image-zoom-plugin",
+  "version": "1.0.0",
+  "description": "Simple jQuery plugin to allow the zoom in of an image, ideal for products stores and galleries.",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "zoom",
+    "zoom",
+    "image"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "ansi-colors": "^3.2.4",
+    "babel": "^6.23.0",
+    "dart-sass": "^1.25.0",
+    "del": "^3.0.0",
+    "fancy-log": "^1.3.3",
+    "fs-extra": "^8.1.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-file-sync": "^2.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-minify": "^3.1.0",
+    "gulp-order": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-strip-css-comments": "^2.0.0",
+    "gulp-strip-debug": "^3.0.0",
+    "jshint": "^2.11.0",
+    "minimist": "^1.2.5",
+    "sass": "^1.26.3"
+  },
+  "author": "Mario Duarte",
+  "license": "GLP"
+}
