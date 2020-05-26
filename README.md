@@ -1,6 +1,9 @@
 # Image Zoom (jQuery) Plugin
 Simple jQuery plugin that will allow users to zoom in your images, perfect for product images and galleries that is less than 1.5kb.
 
+Like this Plugin? Want to say thank you?<br/>
+[Buy me a coffee!](https://paypal.me/MarioDuarte?locale.x=en_GB) Too keep me going and improve this plugin.
+
 ### Dependencies
 - [jQuery 3.X](https://jquery.com/download/)
 
