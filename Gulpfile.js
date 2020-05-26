@@ -70,6 +70,7 @@ function scripts(cb) {
 	.pipe(concat('image-zoom.js'))
 	.pipe(gulpif(argv.prod, stripDebug()))
 	.pipe(gulpif(argv.prod,minify({
+		preserveComments : 'some',
 		ext:{
             src:'.js',
             min:'.min.js'

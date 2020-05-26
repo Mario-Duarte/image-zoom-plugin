@@ -7,6 +7,13 @@ Like this Plugin? Want to say thank you?<br/>
 ### Dependencies
 - [jQuery 3.X](https://jquery.com/download/)
 
+## How it works?
+
+Allows users to click/tap to zoom-in on an image, pan around to inspect the details and click again to zoom-out.
+
+Moving the focus out of the image will also reset the zoom.
+
+Feel free to check this [Demo]() to see it in action.
 
 ## How to use?
 
