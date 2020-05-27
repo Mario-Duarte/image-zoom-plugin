@@ -11,7 +11,8 @@
     "plugin",
     "zoom",
     "zoom",
-    "image"
+	"image",
+	"javascript"
   ],
   "devDependencies": {
     "@babel/core": "^7.8.7",
