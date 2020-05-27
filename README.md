@@ -16,7 +16,7 @@ Allows users to click/tap to zoom-in on an image, pan around to inspect the deta
 
 Moving the focus out of the image will also reset the zoom.
 
-Feel free to check this [Demo](https://codepen.io/MarioDesigns/full/LYpoewr) to see it in action.
+Feel free to check this [Demo](https://mario-duarte.github.io/image-zoom-plugin/) to see it in action.
 
 ## Why?
 
