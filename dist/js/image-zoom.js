@@ -57,7 +57,7 @@ perfect for store products and galleries
     }, options); // Main html template for the zoom in plugin
 
     imageObj.template = `
-			<figure class="containerZoom" style="background-image:url(${this.attr('src')}); background-size: ${settings.zoom}%;">
+			<figure class="containerZoom" style="background-image:url('${this.attr('src')}'); background-size: ${settings.zoom}%;">
 				<img id="imageZoom" src="${this.attr('src')}" alt="${this.attr('alt')}" />
 			</figure>
 		`; // Where all the magic happens, This will detect the position of your mouse
