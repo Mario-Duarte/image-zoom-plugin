@@ -70,6 +70,33 @@
 						});
 					&lt;/script&gt;
 				</code>
+
+				<p>&nbsp;</p>
+				<p><b>Multiple mages with same class:</b></p>
+				<img src="https://picsum.photos/1921/1081" alt="A image to apply the ImageZoom plugin" class="zoom-images">
+				<br/>
+				<img src="https://picsum.photos/1922/1082" alt="A image to apply the ImageZoom plugin" class="zoom-images">
+				<br/>
+				<img src="https://picsum.photos/1923/1083" alt="A image to apply the ImageZoom plugin" class="zoom-images">
+				<br/>
+				<img src="https://picsum.photos/1924/1084" alt="A image to apply the ImageZoom plugin" class="zoom-images">
+				<code>
+					&lt;img src=&quot;https://picsum.photos/1921/1081&quot; alt=&quot;A image to apply the ImageZoom plugin&quot; class=&quot;zoom-images&quot;&gt;
+					&lt;br/&gt;
+					&lt;img src=&quot;https://picsum.photos/1922/1082&quot; alt=&quot;A image to apply the ImageZoom plugin&quot; class=&quot;zoom-images&quot;&gt;
+					&lt;br/&gt;
+					&lt;img src=&quot;https://picsum.photos/1923/1083&quot; alt=&quot;A image to apply the ImageZoom plugin&quot; class=&quot;zoom-images&quot;&gt;
+					&lt;br/&gt;
+					&lt;img src=&quot;https://picsum.photos/1924/1084&quot; alt=&quot;A image to apply the ImageZoom plugin&quot; class=&quot;zoom-images&quot;&gt;
+					&lt;script&gt;
+						$(document).ready(function(){
+							var zoomImages = $('.zoom-images');
+							zoomImages.each(function() {
+								$(this).imageZoom();
+							});
+						});
+					&lt;/script&gt;
+				</code>
 			</div>
 
         </div>
@@ -91,9 +118,15 @@
 			var zoomImage = $('#imageZoom');
 			var zoomImageExtra = $('#imageZoomExtra');
 			var zoomImagePlus = $('#imageZoomExtraPlus');
+			var zoomImages = $('.zoom-images');
+
 			zoomImage.imageZoom();
 			zoomImageExtra.imageZoom({zoom : 200});
 			zoomImagePlus.imageZoom({zoom : 300});
+
+			zoomImages.each(function() {
+				$(this).imageZoom();
+			});
 
 		});
 
