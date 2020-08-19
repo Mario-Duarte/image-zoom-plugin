@@ -4,6 +4,12 @@
 
 Simple jQuery plugin that will allow users to zoom in your images, perfect for product images and galleries that is less than 1.5kb.
 
+![HitCount](http://hits.dwyl.com/mario-duarte/image-zoom-plugin.svg)
+![issues](https://img.shields.io/github/issues/Mario-Duarte/image-zoom-plugin)
+![Forks](https://img.shields.io/github/forks/Mario-Duarte/image-zoom-plugin)
+![Stars](https://img.shields.io/github/stars/Mario-Duarte/image-zoom-plugin)
+
+
 Like this Plugin? Want to say thank you?<br/>
 [Buy me a coffee!](https://paypal.me/MarioDuarte?locale.x=en_GB) Too keep me going and improve this plugin.
 
