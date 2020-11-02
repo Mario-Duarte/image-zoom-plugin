@@ -43,8 +43,8 @@ perfect for store products and galleries
 
 		// Main html template for the zoom in plugin
 		imageObj.template = `
-			<figure class="containerZoom" style="background-image:url('${this.attr('src')}'); background-size: ${settings.zoom}%;">
-				<img id="imageZoom" src="${this.attr('src')}" alt="${this.attr('alt')}" />
+			<figure class="containerZoom" style="background-image:url('${String(this.attr('src'))}'); background-size: ${String(settings.zoom)}%;">
+				<img id="imageZoom" src="${String(this.attr('src'))}" alt="${String(this.attr('alt'))}" />
 			</figure>
 		`;
 
@@ -96,7 +96,7 @@ perfect for store products and galleries
 
 		}
 
-		let newElm = $(this).replaceWith(imageObj.template);
+		let newElm = $(this).replaceWith(String(imageObj.template));
 		attachEvents($('.containerZoom')[$('.containerZoom').length - 1]);
 
 		// return updated element to allow for jQuery chained events
