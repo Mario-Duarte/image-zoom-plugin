@@ -4,6 +4,8 @@
 
 Simple jQuery plugin that will allow users to zoom in your images, perfect for product images and galleries that is less than 1.5kb.
 
+Looking for a React component version of this? [Got you covered](https://github.com/Mario-Duarte/react-image-zooom)!
+
 ![HitCount](http://hits.dwyl.com/mario-duarte/image-zoom-plugin.svg)
 ![issues](https://img.shields.io/github/issues/Mario-Duarte/image-zoom-plugin)
 ![Forks](https://img.shields.io/github/forks/Mario-Duarte/image-zoom-plugin)
