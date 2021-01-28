@@ -13,6 +13,7 @@ Looking for a React component version of this? [Got you covered](https://github.
 
 
 Like this Plugin? Want to say thank you?<br/>
+<a href="https://www.buymeacoffee.com/marioduarte"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Coffee&emoji=&slug=marioduarte&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a><br/>
 [Buy me a coffee!](https://paypal.me/MarioDuarte?locale.x=en_GB) Too keep me going and improve this plugin.
 
 ### Dependencies
