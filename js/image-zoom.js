@@ -65,8 +65,14 @@ perfect for store products and galleries
     function zoomIn(e) {
       let zoomer = e.currentTarget;
       let x, y, offsetX, offsetY;
-      e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX;
-      e.offsetY ? offsetY = e.offsetY : offsetY = e.touches[0].pageX;
+      if (e.type === 'mousemove') {
+        offsetX = e.offsetX || e.clientX - $(zoomer).offset().left;
+        offsetY = e.offsetY || e.clientY - $(zoomer).offset().top;
+      } else if (e.type === 'touchmove') {
+        e.preventDefault(); // Prevent default touch behavior (scrolling)
+        offsetX = Math.min(Math.max(0, e.originalEvent.touches[0].pageX - $(zoomer).offset().left), zoomer.offsetWidth);
+        offsetY = Math.min(Math.max(0, e.originalEvent.touches[0].pageY - $(zoomer).offset().top), zoomer.offsetHeight);
+      }
       x = offsetX / zoomer.offsetWidth * 100;
       y = offsetY / zoomer.offsetHeight * 100;
       $(zoomer).css({
@@ -78,7 +84,7 @@ perfect for store products and galleries
     // the main template code
     function attachEvents(container) {
       container = $(container);
-      container.on('click', function (e) {
+      container.on('click touchstart', function (e) {
         if ("zoom" in imageObj == false) {
           // zoom is not defined, let define it and set it to false
           imageObj.zoom = false;
@@ -92,16 +98,15 @@ perfect for store products and galleries
           zoomIn(e);
         }
       });
-      container.on('mousemove', function (e) {
+      container.on('mousemove touchmove', function (e) {
         imageObj.zoom ? zoomIn(e) : null;
       });
-      container.on('mouseleave', function () {
+      container.on('mouseleave touchend', function () {
         imageObj.zoom = false;
         $(this).removeClass('active');
       });
     }
     let newElm;
-    console.log(this[0].nodeName);
     if (this[0].nodeName === "IMG") {
       newElm = $(this).replaceWith(String(imageObj.template));
       attachEvents($('.containerZoom')[$('.containerZoom').length - 1]);
