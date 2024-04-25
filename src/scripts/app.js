@@ -4,7 +4,7 @@ https://github.com/Mario-Duarte/image-zoom-plugin/
 Simple jQuery plugin that converts an image into a click to zoom image
 perfect for store products and galleries
 */
-(function($){
+(function ($) {
 
 	// Thanks to Mozilla for this polyfill
 	// find out more on - https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith
@@ -13,33 +13,33 @@ perfect for store products and galleries
 		var parent = this.parentNode, i = arguments.length, currentNode;
 		if (!parent) return;
 		if (!i) // if there are no arguments
-		parent.removeChild(this);
+			parent.removeChild(this);
 		while (i--) { // i-- decrements i and returns the value of i before the decrement
-		currentNode = arguments[i];
-		if (typeof currentNode !== 'object'){
-			currentNode = this.ownerDocument.createTextNode(currentNode);
-		} else if (currentNode.parentNode){
-			currentNode.parentNode.removeChild(currentNode);
-		}
-		// the value of "i" below is after the decrement
-		if (!i) // if currentNode is the first argument (currentNode === arguments[0])
-			parent.replaceChild(currentNode, this);
-		else // if currentNode isn't the first
-			parent.insertBefore(currentNode, this.previousSibling);
+			currentNode = arguments[i];
+			if (typeof currentNode !== 'object') {
+				currentNode = this.ownerDocument.createTextNode(currentNode);
+			} else if (currentNode.parentNode) {
+				currentNode.parentNode.removeChild(currentNode);
+			}
+			// the value of "i" below is after the decrement
+			if (!i) // if currentNode is the first argument (currentNode === arguments[0])
+				parent.replaceChild(currentNode, this);
+			else // if currentNode isn't the first
+				parent.insertBefore(currentNode, this.previousSibling);
 		}
 	}
-	if (!Element.prototype.replaceWith) {Element.prototype.replaceWith = ReplaceWithPolyfill;}
-	if (!CharacterData.prototype.replaceWith) {CharacterData.prototype.replaceWith = ReplaceWithPolyfill;}
-	if (!DocumentType.prototype.replaceWith) {DocumentType.prototype.replaceWith = ReplaceWithPolyfill;}
+	if (!Element.prototype.replaceWith) { Element.prototype.replaceWith = ReplaceWithPolyfill; }
+	if (!CharacterData.prototype.replaceWith) { CharacterData.prototype.replaceWith = ReplaceWithPolyfill; }
+	if (!DocumentType.prototype.replaceWith) { DocumentType.prototype.replaceWith = ReplaceWithPolyfill; }
 
 	const imageObj = {};
 
-	$.fn.imageZoom = function(options) {
+	$.fn.imageZoom = function (options) {
 
 		// Default settings for the zoom level
 		let settings = $.extend({
-            zoom: 150,
-        }, options );
+			zoom: 150,
+		}, options);
 
 		// Main html template for the zoom in plugin
 		imageObj.template = `
@@ -51,14 +51,20 @@ perfect for store products and galleries
 		// Where all the magic happens, This will detect the position of your mouse
 		// in relation to the image and pan the zoomed in background image in the
 		// same direction
-		function zoomIn(e){
+		function zoomIn(e) {
 			let zoomer = e.currentTarget;
-			let x,y,offsetX,offsetY;
-			e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX;
-			e.offsetY ? offsetY = e.offsetY : offsetY = e.touches[0].pageX;
-			x = offsetX/zoomer.offsetWidth*100;
-			y = offsetY/zoomer.offsetHeight*100;
-			$(zoomer).css({"background-position" : `${x}% ${y}%`});
+			let x, y, offsetX, offsetY;
+			if (e.type === 'mousemove') {
+				offsetX = e.offsetX || e.clientX - $(zoomer).offset().left;
+				offsetY = e.offsetY || e.clientY - $(zoomer).offset().top;
+			} else if (e.type === 'touchmove') {
+				e.preventDefault(); // Prevent default touch behavior (scrolling)
+                offsetX = Math.min(Math.max(0, e.originalEvent.touches[0].pageX - $(zoomer).offset().left), zoomer.offsetWidth);
+                offsetY = Math.min(Math.max(0, e.originalEvent.touches[0].pageY - $(zoomer).offset().top), zoomer.offsetHeight);
+			}
+			x = offsetX / zoomer.offsetWidth * 100;
+			y = offsetY / zoomer.offsetHeight * 100;
+			$(zoomer).css({ "background-position": `${x}% ${y}%` });
 		}
 
 		// Main function to attach all events after replacing the image tag with
@@ -66,30 +72,30 @@ perfect for store products and galleries
 		function attachEvents(container) {
 
 			container = $(container);
-			container.on('click', function(e){
+			container.on('click touchstart', function (e) {
 
-				if ( "zoom" in imageObj == false ) {
+				if ("zoom" in imageObj == false) {
 					// zoom is not defined, let define it and set it to false
 					imageObj.zoom = false;
 				}
 
 				if (imageObj.zoom) {
-						imageObj.zoom = false;
-						$(this).removeClass('active');
-					} else {
-						imageObj.zoom = true;
-						$(this).addClass('active');
-						zoomIn(e);
-					}
+					imageObj.zoom = false;
+					$(this).removeClass('active');
+				} else {
+					imageObj.zoom = true;
+					$(this).addClass('active');
+					zoomIn(e);
+				}
 
-				});
+			});
 
-			container.on('mousemove', function(e) {
+			container.on('mousemove touchmove', function (e) {
 				imageObj.zoom ? zoomIn(e) : null;
 			});
 
 
-			container.on('mouseleave', function() {
+			container.on('mouseleave touchend', function () {
 				imageObj.zoom = false;
 				$(this).removeClass('active');
 			});
@@ -97,9 +103,8 @@ perfect for store products and galleries
 		}
 
 		let newElm;
-		console.log(this[0].nodeName);
 
-		if ( this[0].nodeName === "IMG" ) {
+		if (this[0].nodeName === "IMG") {
 			newElm = $(this).replaceWith(String(imageObj.template));
 			attachEvents($('.containerZoom')[$('.containerZoom').length - 1]);
 		} else {
