@@ -69,27 +69,40 @@ perfect for store products and galleries
 		// same direction
 		function zoomIn(e) {
 			let zoomer = e.currentTarget;
+			if (!zoomer || !e) {
+				return;
+			}
+
 			let x, y, offsetX, offsetY;
+			let zoomerOffset = $(zoomer).offset();
+
+			// Check if element offset is available
+			if (!zoomerOffset) {
+				return;
+			}
+
 			if (e.type === "mousemove") {
-				offsetX = e.offsetX || e.clientX - $(zoomer).offset().left;
-				offsetY = e.offsetY || e.clientY - $(zoomer).offset().top;
+				offsetX = e.offsetX || e.clientX - zoomerOffset.left;
+				offsetY = e.offsetY || e.clientY - zoomerOffset.top;
 			} else if (e.type === "touchmove") {
 				// Only prevent default if one finger is used (to allow scrolling with multiple fingers)
-				if (e.originalEvent.touches.length === 1) {
+				if (
+					e.originalEvent &&
+					e.originalEvent.touches &&
+					e.originalEvent.touches.length === 1
+				) {
 					e.preventDefault();
 					offsetX = Math.min(
 						Math.max(
 							0,
-							e.originalEvent.touches[0].pageX -
-								$(zoomer).offset().left
+							e.originalEvent.touches[0].pageX - zoomerOffset.left
 						),
 						zoomer.offsetWidth
 					);
 					offsetY = Math.min(
 						Math.max(
 							0,
-							e.originalEvent.touches[0].pageY -
-								$(zoomer).offset().top
+							e.originalEvent.touches[0].pageY - zoomerOffset.top
 						),
 						zoomer.offsetHeight
 					);
@@ -98,6 +111,17 @@ perfect for store products and galleries
 					return;
 				}
 			}
+
+			// Check if offsetX and offsetY are valid numbers and zoomer dimensions exist
+			if (
+				typeof offsetX !== "number" ||
+				typeof offsetY !== "number" ||
+				!zoomer.offsetWidth ||
+				!zoomer.offsetHeight
+			) {
+				return;
+			}
+
 			x = (offsetX / zoomer.offsetWidth) * 100;
 			y = (offsetY / zoomer.offsetHeight) * 100;
 			$(zoomer).css({
@@ -109,8 +133,21 @@ perfect for store products and galleries
 		// the main template code
 		function attachEvents(container) {
 			container = $(container);
+
+			if (!container || !container.length) {
+				return;
+			}
+
 			container.on("click touchstart", function (e) {
-				if (e.type === "touchstart" && e.touches.length > 1) {
+				if (!e) {
+					return;
+				}
+
+				if (
+					e.type === "touchstart" &&
+					e.touches &&
+					e.touches.length > 1
+				) {
 					return;
 				}
 				if ("zoom" in imageObj == false) {
@@ -128,6 +165,9 @@ perfect for store products and galleries
 				}
 			});
 			container.on("mousemove touchmove", function (e) {
+				if (!e) {
+					return;
+				}
 				imageObj.zoom ? zoomIn(e) : null;
 			});
 			container.on("mouseleave touchend", function () {
