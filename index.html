@@ -47,6 +47,21 @@
 					&lt;/script&gt;
 				</code>
 
+				<p><b>Image with fullWidth prop:</b></p>
+				<img id="imageZoomFullWidth" src="https://picsum.photos/1920/1080" alt="A image to apply the ImageZoom plugin">
+
+				<p>If <i>fullWidth</i> is true, the zoom level is calculated to fit the image's natural width, it will fallback to the value set by the <i>zoom</i> if the image's natural width is not available or less than the container's width.</p>
+
+				<p>Example code with fullWidth prop:</p>
+				<code>
+					&lt;img id=&quot;imageZoomFullWidth&quot; src=&quot;https://picsum.photos/1920/1080&quot; alt=&quot;A image to apply the ImageZoom plugin&quot;&gt;
+					&lt;script&gt;
+						$(document).ready(function(){
+							$('#imageZoomFullWidth').imageZoom({ fullWidth: true });
+						});
+					&lt;/script&gt;
+				</code>
+
 				<p>&nbsp;</p>
 				<p><b>Image with 200% zoom:</b></p>
 				<img id="imageZoomExtra" src="https://picsum.photos/1440/1080" alt="A image to apply the ImageZoom plugin">
@@ -116,11 +131,13 @@
 
 			// Image zoom plugin code
 			var zoomImage = $('#imageZoom');
+			var zoomImageFullWidth = $('#imageZoomFullWidth');
 			var zoomImageExtra = $('#imageZoomExtra');
 			var zoomImagePlus = $('#imageZoomExtraPlus');
 			var zoomImages = $('.zoom-images');
 
 			zoomImage.imageZoom();
+			zoomImageFullWidth.imageZoom({ fullWidth: true });
 			zoomImageExtra.imageZoom({zoom : 200});
 			zoomImagePlus.imageZoom({zoom : 300});
 
