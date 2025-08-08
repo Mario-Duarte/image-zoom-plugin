@@ -88,6 +88,10 @@ You can pass the Zoom level as an option, by default this is set to 150%.
 
 `$('#imageZoom').imageZoom({zoom : 200});`
 
+You can also add the prop `fullWidth` as true, this will ensure that the zoom level is calculated to fit the image's natural width, it will fallback to the value set by the `zoom` if the image's natural width is not available or less than the container's width.
+
+`$('#imageZoom').imageZoom({fullWidth : true});`
+
 #### Add to all images in a gallery
 
 To add the zoom plugin to multiple images on a gallery you can use a standard loop to loop through the images and add the plugin to each of them.
