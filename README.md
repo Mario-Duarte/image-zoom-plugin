@@ -6,13 +6,13 @@ Simple jQuery plugin that will allow users to zoom in your images, perfect for p
 
 Looking for a React component version of this? [Got you covered](https://github.com/Mario-Duarte/react-image-zooom)!
 
-![HitCount](http://hits.dwyl.com/mario-duarte/image-zoom-plugin.svg)
 ![issues](https://img.shields.io/github/issues/Mario-Duarte/image-zoom-plugin)
 ![Forks](https://img.shields.io/github/forks/Mario-Duarte/image-zoom-plugin)
 ![Stars](https://img.shields.io/github/stars/Mario-Duarte/image-zoom-plugin)
 
 
-Like this Plugin? Want to say thank you?<br/>
+Like this Plugin? Want to say thank you?
+
 <a href="https://www.buymeacoffee.com/marioduarte"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Coffee&emoji=&slug=marioduarte&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a><br/>
 [Buy me a coffee!](https://paypal.me/MarioDuarte?locale.x=en_GB) Too keep me going and improve this plugin.
 
@@ -87,6 +87,10 @@ Add a new script at the end of your html just before the end of the body tag and
 You can pass the Zoom level as an option, by default this is set to 150%.
 
 `$('#imageZoom').imageZoom({zoom : 200});`
+
+You can also add the prop `fullWidth` as true, this will ensure that the zoom level is calculated to fit the image's natural width, it will fallback to the value set by the `zoom` if the image's natural width is not available or less than the container's width.
+
+`$('#imageZoom').imageZoom({fullWidth : true});`
 
 #### Add to all images in a gallery
 

@@ -1,6 +1,6 @@
 {
   "name": "image-zoom-plugin",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Simple jQuery plugin to allow the zoom in of an image, ideal for products stores and galleries.",
   "main": "Gulpfile.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "plugin",
     "zoom",
     "zoom",
-	"image",
-	"javascript"
+    "image",
+    "javascript"
   ],
   "devDependencies": {
     "@babel/core": "^7.8.7",

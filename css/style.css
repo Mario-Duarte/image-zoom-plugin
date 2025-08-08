@@ -1,11 +1,11 @@
 html,
 body {
-    margin: 0;
-    position: relative;
+	margin: 0;
+	position: relative;
 }
 
 body {
-    font-size: 12pt;
+	font-size: 12pt;
 	font-family: Helvetica, sans-serif;
 	background-color: white;
 }
@@ -14,7 +14,10 @@ body * {
 	box-sizing: border-box;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
 	text-transform: uppercase;
 }
 
@@ -23,7 +26,8 @@ a {
 	color: tomato;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
 	text-decoration: underline;
 	color: tomato;
 }
@@ -39,7 +43,7 @@ section#main {
 	margin: 40px 0;
 }
 
-section#main >.inner {
+section#main > .inner {
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
@@ -58,7 +62,8 @@ section#main >.inner {
 	transition: all 200ms ease-in-out;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
 	background-color: #333;
 	color: white;
 	text-decoration: none;
@@ -71,12 +76,14 @@ figure {
 
 code {
 	display: block;
+	width: 100%;
 	background-color: #333;
 	border-radius: 3px;
 	border: white dashed 2px;
 	color: #ddd;
 	padding: 10px;
 	margin: 20px 0;
+	overflow-x: scroll;
 }
 
 footer {
