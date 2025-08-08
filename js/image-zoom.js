@@ -64,6 +64,37 @@ perfect for store products and galleries
 			</figure>
 		`;
 
+		// Helper function to get touch information consistently across different events
+		function getTouchInfo(e) {
+			// Try originalEvent.touches first (jQuery normalized), then fall back to native touches
+			const touches =
+				(e.originalEvent && e.originalEvent.touches) || e.touches;
+			return {
+				touches: touches,
+				length: touches ? touches.length : 0,
+				isValid: touches && touches.length > 0,
+			};
+		}
+
+		// Helper function to check if event is a touch event
+		function isTouchEvent(e) {
+			return (
+				e.type === "touchstart" ||
+				e.type === "touchmove" ||
+				e.type === "touchend"
+			);
+		}
+
+		// Helper function to check if touch interaction should be allowed (single finger only)
+		function shouldAllowTouchInteraction(e) {
+			if (!isTouchEvent(e)) {
+				return true; // Allow mouse events
+			}
+
+			const touchInfo = getTouchInfo(e);
+			return touchInfo.length === 1; // Only allow single finger touch
+		}
+
 		// Where all the magic happens, This will detect the position of your mouse
 		// in relation to the image and pan the zoomed in background image in the
 		// same direction
@@ -85,29 +116,30 @@ perfect for store products and galleries
 				offsetX = e.offsetX || e.clientX - zoomerOffset.left;
 				offsetY = e.offsetY || e.clientY - zoomerOffset.top;
 			} else if (e.type === "touchmove") {
-				// Only prevent default if one finger is used (to allow scrolling with multiple fingers)
-				if (
-					e.originalEvent &&
-					e.originalEvent.touches &&
-					e.originalEvent.touches.length === 1
-				) {
+				const touchInfo = getTouchInfo(e);
+
+				// Only allow single finger touch interactions
+				if (!shouldAllowTouchInteraction(e)) {
+					return;
+				}
+
+				if (touchInfo.isValid) {
 					e.preventDefault();
 					offsetX = Math.min(
 						Math.max(
 							0,
-							e.originalEvent.touches[0].pageX - zoomerOffset.left
+							touchInfo.touches[0].pageX - zoomerOffset.left
 						),
 						zoomer.offsetWidth
 					);
 					offsetY = Math.min(
 						Math.max(
 							0,
-							e.originalEvent.touches[0].pageY - zoomerOffset.top
+							touchInfo.touches[0].pageY - zoomerOffset.top
 						),
 						zoomer.offsetHeight
 					);
 				} else {
-					// If more than one finger, do not zoom or block scroll
 					return;
 				}
 			}
@@ -143,11 +175,8 @@ perfect for store products and galleries
 					return;
 				}
 
-				if (
-					e.type === "touchstart" &&
-					e.touches &&
-					e.touches.length > 1
-				) {
+				// Check if touch interaction should be allowed (single finger only)
+				if (!shouldAllowTouchInteraction(e)) {
 					return;
 				}
 				if ("zoom" in imageObj == false) {
