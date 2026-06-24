@@ -43,8 +43,8 @@ perfect for store products and galleries
 	if (!DocumentType.prototype.replaceWith) {
 		DocumentType.prototype.replaceWith = ReplaceWithPolyfill;
 	}
-	const imageObj = {};
 	$.fn.imageZoom = function (options) {
+		const imageObj = {};
 		// Default settings for the zoom level
 		let settings = $.extend(
 			{
@@ -133,10 +133,10 @@ perfect for store products and galleries
 				return;
 			}
 
-			if (e.type === "mousemove") {
+			if (e.type === "mousemove" || e.type === "click") {
 				offsetX = e.offsetX || e.clientX - zoomerOffset.left;
 				offsetY = e.offsetY || e.clientY - zoomerOffset.top;
-			} else if (e.type === "touchmove") {
+			} else if (e.type === "touchmove" || e.type === "touchstart") {
 				const touchInfo = getTouchInfo(e);
 
 				// Only allow single finger touch interactions
@@ -210,15 +210,7 @@ perfect for store products and galleries
 				}
 			}
 
-			container.on("click touchstart", function (e) {
-				if (!e) {
-					return;
-				}
-
-				// Check if touch interaction should be allowed (single finger only)
-				if (!shouldAllowTouchInteraction(e)) {
-					return;
-				}
+			container.on("click", function (e) {
 				if ("zoom" in imageObj == false) {
 					// zoom is not defined, let define it and set it to false
 					imageObj.zoom = false;
@@ -239,7 +231,7 @@ perfect for store products and galleries
 				}
 				imageObj.zoom ? zoomIn(e) : null;
 			});
-			container.on("mouseleave touchend", function () {
+			container.on("mouseleave", function () {
 				imageObj.zoom = false;
 				$(this).removeClass("active");
 			});
